@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Healthy App</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+
+<!-- BMI 頁面結構 -->
+<div id="page-game" data-role="page">
+
+    <!-- Header 頂部欄 -->
+    <div data-role="header">
+        <h1>Guess a Number</h1>
+    </div>
+
+    <!-- 內容 -->
+    <div data-role="content">
+        <h2>Guess a Number</h2>
+
+        <label for="number"> </label>
+        <input type="text" name="number" id="number" value="">
+
+        <br>
+
+        <button class="ui-btn ui-shadow" id="btn-calculate">Submit</button>
+
+        <div id="result">
+            
+        </div>
+    </div>
+</div>
+
+<script>
+var the_number = Math.floor(Math.random() * 100)
+
+console.log(the_number)
+
+$('#btn-calculate').on('click', function (e) {
+    e.preventDefault();
+
+    var number = parseInt($('#number').val());
+
+    if (isNaN(number) || number < 0 || number > 100) {
+        alert('請輸入正確的 number');
+        return;
+    }
+
+    if (the_number == number) {
+        // correct
+        $('#result').html('Correct!');
+    } else if (number < the_number) {
+        // guess a greater number
+        $('#result').html('guess a greater number!');
+    } else if (number > the_number) {
+        // guess a smaller number
+        $('#result').html('guess a smaller number!');
+
+    }
+});
+</script>
+
+</body>
+</html>
